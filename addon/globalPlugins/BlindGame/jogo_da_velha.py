@@ -66,7 +66,7 @@ Coloque seu NVDA em modo grau de símbolos tudo, faça isso precionando Insert +
 Jogo da Velha - Você joga contra o computador!
 
 Como jogar:
-- Você é o X e o computador é o O
+- Você é o X e o computador é o 0
 - Digite a linha (1, 2 ou 3) e coluna (1, 2 ou 3) para fazer sua jogada
 - O objetivo é formar uma linha, coluna ou diagonal com 3 símbolos iguais
 - O jogo termina quando alguém vence ou quando todas as casas são preenchidas (empate)
@@ -77,12 +77,10 @@ Clique no botão Iniciar Jogo para começar.
         text_ctrl = wx.TextCtrl(panel, value=conteudo, style=wx.TE_MULTILINE | wx.TE_READONLY | wx.HSCROLL)
         text_ctrl.SetFocus()
 
-        # Criar botões
         btn_iniciar_jogo = wx.Button(panel, label="Iniciar Jogo")
         btn_menu = wx.Button(panel, label="Voltar ao Menu")
         btn_fechar = wx.Button(panel, label="Fechar")
 
-        # Organizar elementos
         sizer = wx.BoxSizer(wx.VERTICAL)
         sizer.Add(text_ctrl, proportion=1, flag=wx.EXPAND | wx.ALL, border=10)
         sizer.Add(btn_iniciar_jogo, flag=wx.EXPAND | wx.ALL, border=5)
@@ -91,7 +89,6 @@ Clique no botão Iniciar Jogo para começar.
 
         panel.SetSizer(sizer)
 
-        # Associar eventos aos botões
         btn_iniciar_jogo.Bind(wx.EVT_BUTTON, lambda event: self.iniciar_jogo(frame))
         btn_menu.Bind(wx.EVT_BUTTON, lambda event: self.voltar_ao_menu(frame))
         btn_fechar.Bind(wx.EVT_BUTTON, lambda event: self.fechar_jogo(frame))
@@ -194,8 +191,8 @@ Clique no botão Iniciar Jogo para começar.
             for i in range(3):
                 for j in range(3):
                     if self.tabuleiro[i][j] == " ":
-                        self.tabuleiro[i][j] = "O"
-                        if self.verificar_vitoria("O"):
+                        self.tabuleiro[i][j] = "0"
+                        if self.verificar_vitoria("0"):
                             self.atualizar_tabuleiro()
                             self.verificar_fim_jogo()
                             return
@@ -207,17 +204,17 @@ Clique no botão Iniciar Jogo para começar.
                     if self.tabuleiro[i][j] == " ":
                         self.tabuleiro[i][j] = "X"
                         if self.verificar_vitoria("X"):
-                            self.tabuleiro[i][j] = "O"  # bloqueia aqui
+                            self.tabuleiro[i][j] = "0"  
                             self.atualizar_tabuleiro()
                             self.verificar_fim_jogo()
                             return
-                        self.tabuleiro[i][j] = " "  # desfaz
+                        self.tabuleiro[i][j] = " "  
 
         # 3. Jogada aleatória (ou sempre que não entrou acima)
         jogadas_disponiveis = [(i, j) for i in range(3) for j in range(3) if self.tabuleiro[i][j] == " "]
         if jogadas_disponiveis:
             linha, coluna = random.choice(jogadas_disponiveis)
-            self.tabuleiro[linha][coluna] = "O"
+            self.tabuleiro[linha][coluna] = "0"
             self.atualizar_tabuleiro()
         self.verificar_fim_jogo()
 
@@ -243,7 +240,7 @@ Clique no botão Iniciar Jogo para começar.
             mensagem = "Parabéns! Você venceu! 🎉"
             self.frame.Close()
             self.exibir_resultado(mensagem)
-        elif self.verificar_vitoria("O"):
+        elif self.verificar_vitoria("0"):
             self.pararSom()
             self.tocarSom("voce perdeu.wav")
             mensagem = "O computador venceu! 😢"
@@ -254,8 +251,8 @@ Clique no botão Iniciar Jogo para começar.
             self.frame.Close()
             self.exibir_resultado(mensagem)
         else:
-            self.jogador_atual = "O" if self.jogador_atual == "X" else "X"
-            if self.jogador_atual == "O":
+            self.jogador_atual = "0" if self.jogador_atual == "X" else "X"
+            if self.jogador_atual == "0":
                 wx.CallLater(1000, self.jogada_computador)  
 
     def exibir_resultado(self, mensagem):
@@ -294,7 +291,7 @@ Clique no botão Iniciar Jogo para começar.
             print(f"Erro em fechar_jogo: {e}")
 
     def tocarSom(self, nomeSom):
-        caminho_som = os.path.join(os.path.dirname(__file__), "sounds", nomeSom)
+        BlindGame.tocarTrilha(nomeSom)
         try:
             winsound.PlaySound(caminho_som, winsound.SND_FILENAME | winsound.SND_ASYNC)
         except Exception as e:

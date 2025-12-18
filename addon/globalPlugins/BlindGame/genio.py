@@ -325,7 +325,7 @@ Clique no botão Iniciar Jogo para começar.
             frame_atual.Destroy()
 
     def tocarSom(self, nomeSom):
-        caminho_som = os.path.join(os.path.dirname(__file__), "sounds", nomeSom)
+        BlindGame.tocarTrilha(nomeSom)
         try:
             winsound.PlaySound(caminho_som, winsound.SND_FILENAME | winsound.SND_ASYNC)
         except Exception as e:
