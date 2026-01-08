@@ -1,10 +1,10 @@
-name = "blind-game"
+name = "blindGame"
 summary = "Blind Game"
 description = """Sua central de jogos no NVDA,  ative o AddOn com o atalho NVDA+shift+j escolha seu jogo preferido e se divirta avontade,
 pare e retome a trilha sonora apartir do atalho NVDA+Shift+P"""
 author = "Aldenor Neto <aldenor05062010@gmail.com>"
 url = "https://github.com/Aldenor-Neto/Blind-game"
-version = "2.0"
+version = "2.0.1"
 docFileName = "readme.md"
 minimumNVDAVersion = "2022.4"
 lastTestedNVDAVersion = "2025.3"

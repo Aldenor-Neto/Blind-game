@@ -16,7 +16,7 @@ def _(arg):
 # Add-on information variables
 addon_info = {
 	# add-on Name/identifier, internal for NVDA
-	"addon_name": "blindgame",
+	"addon_name": "blindGame",
 	# Add-on summary, usually the user visible name of the addon.
 	# Translators: Summary for this add-on
 	# to be shown on installation and add-on information found in Add-ons Manager.
@@ -27,7 +27,7 @@ addon_info = {
                         Ative a aplicação com  atalho NVDA+Shift+j.
                         Pare e retome a trilha sonora com o atalho NVDA+Shift+P"""),
 	# version
-	"addon_version": "2.0",
+	"addon_version": "2.0.1",
 	# Author(s)
 	"addon_author": "Aldenor Neto<aldenor05062010@gmail.com>",
 	# URL for the add-on documentation support
